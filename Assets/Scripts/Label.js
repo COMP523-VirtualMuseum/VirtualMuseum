@@ -13,7 +13,7 @@ Judy Chung, Zhenwei Wang
 * @property isClicked
 * @type boolean
 */
-var isClicked: boolean;
+private var isClicked: boolean;
 
 /**
 * image holder for pop-up
@@ -45,7 +45,7 @@ var description: String;
 * @property back
 * @type String
 */
-var back = "Back";
+private var back = "Back";
 
 /**
 * define the style of the content
@@ -117,13 +117,13 @@ function OnGUI()
 {
 	if (isClicked)
 	{
-		Camera.main.GetComponent(Movement).enabled = false;
+		//Camera.main.GetComponent(Movement).enabled = false;
 		GUI.backgroundColor=Color.grey;
 		GUI.ModalWindow (0, Rect (0,0,Screen.width,Screen.height), DoWindow0, title,style);
 		style.fontSize = 20;
 		style.alignment = TextAnchor.UpperCenter;
 	}
 	if (!isClicked){
-		Camera.main.GetComponent(Movement).enabled = true;
+		//Camera.main.GetComponent(Movement).enabled = true;
 	}
 }
