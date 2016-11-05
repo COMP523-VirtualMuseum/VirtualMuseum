@@ -89,7 +89,8 @@ function renderContent()
 	panel.transform.Find("Title Panel").transform.Find("Title").GetComponent(UI.Text).text = title;
 
 	// description of the popup
-	panel.transform.Find("Description Panel/Description").GetComponent(UI.Text).text = description;
+	//panel.transform.Find("Description Panel/Description").GetComponent(UI.Text).text = description;
+	panel.transform.Find("Description Panel/Description/Text").GetComponent(UI.Text).text = description;
 
 	// image of the popup
 	panel.transform.Find("Image").GetComponent(UI.RawImage).texture = texture;
