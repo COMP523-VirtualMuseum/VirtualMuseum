@@ -147,20 +147,24 @@ function Start()
 		var floor : GameObject[] = GameObject.FindGameObjectsWithTag("Floor" + i.ToString());
 		floors[floors.length] = floor;
 	}
-	floor3 = floors[2];
-	for(button in floor3)
-		{
-			var number = ((button.GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text;
-			buttonNumbers.push(number);
-			if (number == sceneName[sceneName.length-1])
+	for(floor in floors) 
+	{
+		var subButtonNumbers = new Array();
+		for(button in floor)
 			{
-				(button.GetComponent("Button") as UnityEngine.UI.Button).colors.normalColor = Color.black;
+				var number = ((button.GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text;
+				subButtonNumbers.push(number);
+				if (number == sceneName[sceneName.length-1])
+				{
+					(button.GetComponent("Button") as UnityEngine.UI.Button).colors.normalColor = Color.black;
 
+				}
+
+				((button.GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = " ";
+				(button.GetComponent("Button") as UnityEngine.UI.Button).interactable = false;
 			}
-
-			((button.GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = " ";
-			(button.GetComponent("Button") as UnityEngine.UI.Button).interactable = false;
-		}
+		buttonNumbers.push(subButtonNumbers);
+	}
 	map.SetActive(false);
 	background.SetActive(false);
 }
@@ -183,9 +187,10 @@ function OnDropdown(i : int)
 
 	for(var j = 0; j < floor.length; j++)
 		{
-
+			var subButtonNumbers : String[] = buttonNumbers[i];
+			var num = subButtonNumbers[j];
 			(floor[j].GetComponent("Button") as UnityEngine.UI.Button).interactable = true;
-			((floor[j].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = buttonNumbers[i];
+			((floor[j].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = num;
 		}
 	if(i != dropval) 
 	{
