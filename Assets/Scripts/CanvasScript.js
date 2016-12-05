@@ -133,6 +133,8 @@ private var map : GameObject;
 *
 * @method Start
 **/
+private var dropval : int = 2;
+
 function Start()
 {
 	sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
@@ -172,26 +174,32 @@ function Start()
 function OnDropdown(i : int) 
 {
 	imageComponent.sprite = images[i];
+	var floor : GameObject[] = floors[2];
+	Debug.Log('dropdown value = ');
+	Debug.Log(dropdown.value);
+	Debug.Log('dropval = ');
+	Debug.Log(dropval);
 	if(i == 2)
 	{
 		//imageComponent.sprite = image3;
-		for(i = 0; i < floor3.length; i++)
+		for(var j = 0; j < floor.length; j++)
 		{
 
-			(floor3[i].GetComponent("Button") as UnityEngine.UI.Button).interactable = true;
-			((floor3[i].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = buttonNumbers[i];
+			(floor[j].GetComponent("Button") as UnityEngine.UI.Button).interactable = true;
+			((floor[j].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = buttonNumbers[i];
 		}
 	}
 	else
 	{
 		//imageComponent.sprite = image1;
-		for(i = 0; i < floor3.length; i++)
+		for(var k = 0; k < floor.length; k++)
 		{
-			(floor3[i].GetComponent("Button") as UnityEngine.UI.Button).interactable = false;
-			((floor3[i].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = " ";
+			(floor[k].GetComponent("Button") as UnityEngine.UI.Button).interactable = false;
+			((floor[k].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = " ";
 
 		}
 	}
+	dropval = i;
 }
 
 /**
@@ -209,6 +217,7 @@ function TogglePopupClick()
 		background.SetActive(true);
 		(Camera.main.GetComponent("Movement") as Movement).enabled = false;
 		dropdown.value = 2; 
+		dropval = 2;
 		// hard coded to open to floor you're on... which is Floor 3 right now, but should eventually be based on actual floor number denoted in the sceneName perhaps?
 	}
     else
