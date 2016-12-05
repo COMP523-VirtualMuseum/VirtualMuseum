@@ -174,28 +174,25 @@ function Start()
 function OnDropdown(i : int) 
 {
 	imageComponent.sprite = images[i];
-	var floor : GameObject[] = floors[2];
+	var floor : GameObject[] = floors[i];
+	var prev_floor : GameObject[] = floors[dropval];
 	Debug.Log('dropdown value = ');
 	Debug.Log(dropdown.value);
 	Debug.Log('dropval = ');
 	Debug.Log(dropval);
-	if(i == 2)
-	{
-		//imageComponent.sprite = image3;
-		for(var j = 0; j < floor.length; j++)
+
+	for(var j = 0; j < floor.length; j++)
 		{
 
 			(floor[j].GetComponent("Button") as UnityEngine.UI.Button).interactable = true;
 			((floor[j].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = buttonNumbers[i];
 		}
-	}
-	else
+	if(i != dropval) 
 	{
-		//imageComponent.sprite = image1;
-		for(var k = 0; k < floor.length; k++)
+	for(var k = 0; k < prev_floor.length; k++)
 		{
-			(floor[k].GetComponent("Button") as UnityEngine.UI.Button).interactable = false;
-			((floor[k].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = " ";
+			(prev_floor[k].GetComponent("Button") as UnityEngine.UI.Button).interactable = false;
+			((prev_floor[k].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = " ";
 
 		}
 	}
