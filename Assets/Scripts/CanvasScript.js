@@ -90,14 +90,6 @@ var images : Sprite[];
 **/
 
 private var floors = new Array();
-/**
-* all buttons tagged with 'Floor3'
-*
-* @property floor3
-* @type GameObject[]
-**/
-
-private var floor3 : GameObject[];
 
 /**
 * the numbers on all the corresponding buttons in the map menu
@@ -143,9 +135,8 @@ function Start()
 	for( var i = 1; i <= numFloors; i++) {
 		var floor = GameObject.FindGameObjectsWithTag("Floor" + i.ToString());
 		floors[floors.length] = floor;
-		print(floor.length);
 	}
-	floor3 = GameObject.FindGameObjectsWithTag("Floor3");
+	var floor3 = GameObject.FindGameObjectsWithTag("Floor3");
 	for(button in floor3)
 		{
 			var number = ((button.GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text;
@@ -175,30 +166,30 @@ function OnDropdown(i : int)
 	if(i == 0)
 	{
 		//imageComponent.sprite = image1;
-		for(i = 0; i < floor3.length; i++)
+		for(i = 0; i < floors[2].length; i++)
 		{
-			(floor3[i].GetComponent("Button") as UnityEngine.UI.Button).interactable = false;
-			((floor3[i].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = " ";
+			(floors[2][i].GetComponent("Button") as UnityEngine.UI.Button).interactable = false;
+			((floors[2][i].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = " ";
 
 		}
 	}
 	if(i == 1)
 	{
 		//imageComponent.sprite = image2;
-		for(i = 0; i < floor3.length; i++)
+		for(i = 0; i < floors[2].length; i++)
 		{
-			(floor3[i].GetComponent("Button") as UnityEngine.UI.Button).interactable = false;
-			((floor3[i].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = " ";
+			(floors[2][i].GetComponent("Button") as UnityEngine.UI.Button).interactable = false;
+			((floors[2][i].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = " ";
 		}
 	}
 	if(i == 2)
 	{
 		//imageComponent.sprite = image3;
-		for(i = 0; i < floor3.length; i++)
+		for(i = 0; i < floors[2].length; i++)
 		{
 
-			(floor3[i].GetComponent("Button") as UnityEngine.UI.Button).interactable = true;
-			((floor3[i].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = buttonNumbers[i];
+			(floors[2][i].GetComponent("Button") as UnityEngine.UI.Button).interactable = true;
+			((floors[2][i].GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text = buttonNumbers[i];
 		}
 	}
 }
