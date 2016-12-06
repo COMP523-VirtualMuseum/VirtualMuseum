@@ -147,14 +147,19 @@ function Start()
 		var floor : GameObject[] = GameObject.FindGameObjectsWithTag("Floor" + i.ToString());
 		floors[floors.length] = floor;
 	}
+
 	for(floor in floors) 
 	{
 		var subButtonNumbers = new Array();
 		for(button in floor)
 			{
+				var sceneNum = '';
+				for(var v = 5; v < sceneName.length; v++) {
+					sceneNum = sceneNum + sceneName[v];
+				}
 				var number = ((button.GetComponent("Button") as UnityEngine.UI.Button).transform.GetChild(0).gameObject.GetComponent("Text") as UnityEngine.UI.Text).text;
 				subButtonNumbers.push(number);
-				if (number == sceneName[sceneName.length-1])
+				if (number == sceneNum) // fix this, should be not just the last number
 				{
 					(button.GetComponent("Button") as UnityEngine.UI.Button).colors.normalColor = Color.black;
 
@@ -180,10 +185,6 @@ function OnDropdown(i : int)
 	imageComponent.sprite = images[i];
 	var floor : GameObject[] = floors[i];
 	var prev_floor : GameObject[] = floors[dropval];
-	Debug.Log('dropdown value = ');
-	Debug.Log(dropdown.value);
-	Debug.Log('dropval = ');
-	Debug.Log(dropval);
 
 	for(var j = 0; j < floor.length; j++)
 		{
